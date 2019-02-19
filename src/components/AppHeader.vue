@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div id="app">
         <v-navigation-drawer absolute temporary v-model="drawer" class="hidden-md-and-up">
             <v-list>
                 <v-list-tile v-for="(item, i) in menuItems" :key="`navDrawer${i}`" :to="item.route">
@@ -13,19 +13,19 @@
             </v-list>
         </v-navigation-drawer>
         <v-toolbar app dark class="primary">
-            <v-toolbar-side-icon @click.stop="drawer = !drawer"  class="hidden-md-and-up" />
-            <div>
+            <v-toolbar-side-icon @click.stop="drawer = !drawer" class="hidden-md-and-up" />
+            <router-link to='/' tag="button">
                 <v-toolbar-title v-text="'VVF'" />
-            </div>
+            </router-link>
             <v-spacer />
-            <v-toolbar-items class="hidden-md-and-down">
+            <v-toolbar-items class="hidden-sm-and-down">
                 <v-btn flat v-for="(item, i) in menuItems" :key="`menuItem${i}`" :to="item.route">
                     <v-icon left v-html="item.icon" />
                     {{item.title}}
                 </v-btn>
             </v-toolbar-items>
         </v-toolbar>
-    </v-app>
+    </div>
 </template>
 <script>
 export default {
