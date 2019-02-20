@@ -35,8 +35,11 @@ export default {
         }
     },
     computed: {
+        isAuth() {
+            return this.$store.getters.isAuth
+        },
         menuItems() {
-            return [
+            return this.isAuth ? [
                 {
                     icon: 'visibility',
                     title: 'Читать',
@@ -53,7 +56,9 @@ export default {
                     icon: 'exit_to_app',
                     title: 'Выйти',
                     route: '/logout'
-                }, {
+                }
+            ] : [
+               {
                     icon: 'input',
                     title: 'Войти',
                     route: '/signin'
@@ -61,8 +66,7 @@ export default {
                     icon: 'lock_open',
                     title: 'Регистрация',
                     route: '/signup'
-                }
-            ]
+                }]
         }
     }
 }
