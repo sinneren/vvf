@@ -6,7 +6,7 @@
             <v-flex xs12 sm8 md4>
                 <v-card class="elevation-12">
                 <v-toolbar dark color="primary">
-                    <v-toolbar-title>Регистрация</v-toolbar-title>
+                    <v-toolbar-title>Вход</v-toolbar-title>
                 </v-toolbar>
                 <v-card-text>
                     <v-form>
@@ -16,7 +16,7 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" @click.prevent="signUp" :disabled="processing">Зарегистрироваться</v-btn>
+                    <v-btn color="primary" @click.prevent="signIn" :disabled="processing">Войти</v-btn>
                 </v-card-actions>
                 </v-card>
                 <v-alert
@@ -60,7 +60,7 @@ export default {
         }
     },
     methods: {
-        signUp() {
+        signIn() {
             this.$store.dispatch('signIn', { email: this.email, password: this.password })
         }
     }

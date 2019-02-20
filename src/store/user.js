@@ -2,10 +2,15 @@ import firebase from 'firebase'
 
 export default  {
     state: {
+        isRegister: false,
         isAuth: false,
         _id: null,
     },
     mutations: {
+        setNewUser(state, payload) {
+            state.isRegister = true
+            state._id = payload
+        },
         setUser(state, payload) {
             state.isAuth = true
             state._id = payload
@@ -14,6 +19,9 @@ export default  {
     getters: {
         isAuth(state) {
             return state.isAuth
+        },
+        isRegister(state) {
+            return state.isRegister
         }
     },
     actions: {
@@ -23,7 +31,7 @@ export default  {
             firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(function (resp) {
                 const { uid } = resp.user
-                commit('setUser', uid)
+                commit('setNewUser', uid)
                 commit('cleanError')
                 commit('setProcessing', false)
             })
@@ -37,7 +45,6 @@ export default  {
             commit('setProcessing', true)
             firebase.auth().signInWithEmailAndPassword(email, password)
             .then(function (resp) {
-                console.log(resp)
                 const { uid } = resp.user
                 commit('setUser', uid)
                 commit('cleanError')

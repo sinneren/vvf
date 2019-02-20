@@ -48,12 +48,12 @@ export default {
         error() {
             return this.$store.getters.getError
         },
-        isAuth() {
-            return this.$store.getters.isAuth
+        isRegister() {
+            return this.$store.getters.isRegister
         }
     },
     watch: {
-        isAuth(state) {
+        isRegister(state) {
             if (state) {
                 this.$router.push('/')
             }
