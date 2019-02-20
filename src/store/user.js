@@ -14,6 +14,10 @@ export default  {
         setUser(state, payload) {
             state.isAuth = true
             state._id = payload
+        },
+        unsetUser(state) {
+            state.isAuth = false
+            state._id = null
         }
     },
     getters: {
@@ -54,6 +58,14 @@ export default  {
                 commit('setProcessing', false)
                 commit('setError', error.message)
             });
+        },
+        stateChange({commit}, payload) {
+            const { uid } = payload
+            if (payload) {
+                commit('setUser', uid)
+            } else {
+                commit('unsetUser')
+            }
         }
     }
 }
