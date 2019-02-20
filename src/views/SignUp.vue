@@ -19,6 +19,12 @@
                 <v-btn color="primary" @click.prevent="signUp">Зарегистрироваться</v-btn>
               </v-card-actions>
             </v-card>
+            <v-alert
+                :value="error"
+                type="error"
+                >
+                {{error}}
+            </v-alert>
           </v-flex>
         </v-layout>
       </v-container>
@@ -33,6 +39,11 @@ export default {
             email: null,
             password: null,
             drawer: null
+        }
+    },
+    computed: {
+        error() {
+            return this.$store.getters.getError
         }
     },
     methods: {

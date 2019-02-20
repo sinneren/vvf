@@ -4,7 +4,7 @@ export default  {
         error: null,
     },
     mutations: {
-        setProceccing(state, payload) {
+        setProcessing(state, payload) {
             state.processing = payload
         },
         setError(state, payload) {
