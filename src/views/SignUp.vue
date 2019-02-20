@@ -1,5 +1,5 @@
 <template>
-    <v-app id="inspire">
+  <v-app id="inspire">
     <v-content>
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
@@ -10,13 +10,13 @@
               </v-toolbar>
               <v-card-text>
                 <v-form>
-                  <v-text-field prepend-icon="person" name="email" label="email" type="email" required v-model="email"></v-text-field>
-                  <v-text-field id="password" prepend-icon="lock" name="password" label="password" type="password" required v-model="password"></v-text-field>
+                  <v-text-field prepend-icon="person" name="email" label="email" type="email" required v-model="email" autocomplete="new-password"></v-text-field>
+                  <v-text-field id="password" prepend-icon="lock" name="password" label="password" type="password" required v-model="password" autocomplete="new-password"></v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" @click.prevent="signUp">Зарегистрироваться</v-btn>
+                <v-btn color="primary" @click.prevent="signUp" :disabled="processing">Зарегистрироваться</v-btn>
               </v-card-actions>
             </v-card>
             <v-alert
@@ -42,8 +42,21 @@ export default {
         }
     },
     computed: {
+        processing() {
+            return this.$store.getters.processing
+        },
         error() {
             return this.$store.getters.getError
+        },
+        isAuth() {
+            return this.$store.getters.isAuth
+        }
+    },
+    watch: {
+        isAuth(state) {
+            if (state) {
+                this.$router.push('/')
+            }
         }
     },
     methods: {
