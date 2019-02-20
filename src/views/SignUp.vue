@@ -10,13 +10,13 @@
               </v-toolbar>
               <v-card-text>
                 <v-form>
-                  <v-text-field prepend-icon="person" name="email" label="email" type="email" required></v-text-field>
-                  <v-text-field id="password" prepend-icon="lock" name="password" label="password" type="password" required></v-text-field>
+                  <v-text-field prepend-icon="person" name="email" label="email" type="email" required v-model="email"></v-text-field>
+                  <v-text-field id="password" prepend-icon="lock" name="password" label="password" type="password" required v-model="password"></v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary">Зарегистрироваться</v-btn>
+                <v-btn color="primary" @click.prevent="signUp">Зарегистрироваться</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -33,6 +33,11 @@ export default {
             email: null,
             password: null,
             drawer: null
+        }
+    },
+    methods: {
+        signUp() {
+            this.$store.dispatch('signUp', { email: this.email, password: this.password })
         }
     }
 }

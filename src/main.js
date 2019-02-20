@@ -7,8 +7,8 @@ import 'vuetify/dist/vuetify.min.css'
 import firebaseConfig from './config/firebase.cfg.js'
 import firebase from 'firebase';
 
-Vue.config.productionTip = false
 Vue.use(Vuetify)
+Vue.config.productionTip = false
 firebase.initializeApp(firebaseConfig)
 
 new Vue({
