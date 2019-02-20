@@ -1,4 +1,4 @@
-var config = {
+export default {
     apiKey: "",
     authDomain: ".firebaseapp.com",
     databaseURL: "https://.firebaseio.com",
