@@ -10,6 +10,11 @@
                         <v-list-tile-title v-text="item.title"></v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
+                <v-list-tile @click.prevent="signOut" v-if="isAuth">
+                    <v-list-tile-action>
+                        <v-icon left>exit_to_app</v-icon>
+                    </v-list-tile-action>
+                </v-list-tile>
             </v-list>
         </v-navigation-drawer>
         <v-toolbar app dark class="primary">
@@ -23,6 +28,10 @@
                     <v-icon left v-html="item.icon" />
                     {{item.title}}
                 </v-btn>
+                <v-btn flat @click.prevent="signOut" v-if="isAuth">
+                    <v-icon left>exit_to_app</v-icon>
+                    Выйти
+                </v-btn>
             </v-toolbar-items>
         </v-toolbar>
     </div>
@@ -32,6 +41,11 @@ export default {
     data() {
         return {
             drawer: false
+        }
+    },
+    methods: {
+        signOut() {
+            this.$store.dispatch('signOut')
         }
     },
     computed: {
@@ -52,10 +66,6 @@ export default {
                     icon: 'account_circle',
                     title: 'Кабинет',
                     route: '/profile'
-                }, {
-                    icon: 'exit_to_app',
-                    title: 'Выйти',
-                    route: '/logout'
                 }
             ] : [
                {
