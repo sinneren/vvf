@@ -55,10 +55,22 @@ export default  {
                 commit('setError', error.message)
             });
         },
-        signOut() {
+        signOut({ commit }) {
+            commit('cleanError')
+            commit('setProcessing', true)
+
             firebase.auth().signOut()
+            .then(function () {
+                commit('setProcessing', false)
+            })
+           .catch(function (error) {
+                commit('setProcessing', false)
+                commit('setError', error)
+            });
         },
         stateChange({commit}, payload) {
+            commit('cleanError')
+            commit('setProcessing', true)
             const { uid } = payload
             if (payload) {
                 commit('setUser', uid)

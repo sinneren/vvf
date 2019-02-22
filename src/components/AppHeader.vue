@@ -7,13 +7,16 @@
                         <v-icon left v-html="item.icon" />
                     </v-list-tile-action>
                     <v-list-tile-content>
-                        <v-list-tile-title v-text="item.title"></v-list-tile-title>
+                        <v-list-tile-title v-text="item.title" />
                     </v-list-tile-content>
                 </v-list-tile>
                 <v-list-tile @click.prevent="signOut" v-if="isAuth">
                     <v-list-tile-action>
                         <v-icon left>exit_to_app</v-icon>
                     </v-list-tile-action>
+                    <v-list-tile-content>
+                        <v-list-tile-title>Выйти</v-list-tile-title>
+                    </v-list-tile-content>
                 </v-list-tile>
             </v-list>
         </v-navigation-drawer>
